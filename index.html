@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <title>Retriever</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+<body>
+<input id="share_url" type="text" disabled>
+  <div id="app">
+    <h1>Text Encryption App</h1>
+    <textarea v-model="inputData">{{ inputData }}</textarea>
+    <button @click="encrypt">Encrypt</button>
+    <div>{{ encryptedData }}</div>
+    <input type="text" disabled v-model="encryptedUrl">
+  </div>
+
+  <script src="crypto.js"></script>
+  <script>
+    async function main() {
+      console.log("yay")
+      if (location.hash == "") {
+        await generateKeyPair()
+        el = document.getElementById("share_url")
+        el.value = window.location.href
+      } else if (location.hash.includes(";")) {
+        console.log("decrypt")
+        var [pub_key_ser, encrypted_text] = location.hash.replace('#', '').split(";")
+        console.log(pub_key_ser)
+        console.log(encrypted_text)
+        console.log(window.localStorage.getItem(pub_key_ser))
+
+        // priv_key = importJWKey(window.localStorage.getItem(pub_key_ser), "decrypt")
+        // priv_key = await importJWKey(deserialize_key(localStorage.getItem(pub_key_ser)), "decrypt")
+        priv_key = await load_key(window.localStorage.getItem(pub_key_ser), 'decrypt')
+        console.log(priv_key)
+
+        decrypted_text = await decryptString(priv_key, encrypted_text)
+        console.log(decrypted_text)
+      } else {
+        console.log("loading key from url")
+        // window.public_key = await load_public_key()
+        pub_key_ser = location.hash.split("#")[1]
+        window.public_key = await load_key(pub_key_ser, 'encrypt')
+        console.log(window.public_key)
+
+        window.encryptString = encryptString
+      }
+    }
+
+    const { createApp, ref } = Vue
+
+  createApp({
+    setup() {
+      main().catch(console.error);
+      const message = ref('Hello vue!')
+      const inputData = ref('Enter data to encrypt')
+      const encryptedData = ref('')
+      const encryptedUrl = ref('')
+
+      function encrypt() {
+        console.log(inputData.value)
+        const encryptedText = encryptString(window.public_key, inputData.value);
+        encryptedText.then(function(value) {
+          encryptedData.value = value
+          encryptedUrl.value = window.location.href + ';' + value
+        })
+
+      }
+      return {
+        encrypt,
+        inputData,
+        encryptedData,
+        encryptedUrl
+      }
+    }
+  }).mount('#app')
+  </script>
+</body>
+</html>
