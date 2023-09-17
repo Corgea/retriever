@@ -31,17 +31,11 @@ async function generateKeyPair() {
         keyPair.privateKey
     );
 
-    console.log("Public Key:", publicKeyJWK);
-    // window.pub_key = publicKeyJWK;
-    console.log("Private Key:", privateKeyJWK);
-    // window.priv_key = privateKeyJWK;
-
     pub_key_ser = serialize_key(publicKeyJWK);
     priv_key_ser = serialize_key(privateKeyJWK);
 
     localStorage.setItem(pub_key_ser, priv_key_ser)
 
-    // location.hash = '#'+pub_key_ser
     return pub_key_ser
 }
 
