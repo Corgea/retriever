@@ -1,0 +1,14 @@
+textarea {
+  resize: none;
+}
+
+.encrypt-btn-container {
+    width: 100%;
+    text-align: right;
+    padding-top: 8px;
+    margin-bottom: 10px;
+}
+
+.encrypt-btn-container svg {
+    margin-top: -3px;
+}
