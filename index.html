@@ -21,7 +21,8 @@
                 <p class="lead mb-4">Share the below url with the person you are requesting a secret from.</p>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" v-model="url" disabled>
-                    <button class="btn btn-primary" type="button" @click="copyToClipboard">Copy
+                    <button class="btn btn-primary btn-copy" type="button" @click="copyToClipboard">
+                        {{ copyText }}
                     </button>
                 </div>
             </div>
@@ -50,8 +51,8 @@
                         <p class="">This url contains your encrypted data, send it back to the requestor.</p>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" v-model="url" disabled>
-                            <button class="btn btn-primary" type="button" @click="copyToClipboard">
-                                Copy
+                            <button class="btn btn-primary btn-copy" type="button" @click="copyToClipboard">
+                                {{ copyText }}
                             </button>
                         </div>
                     </div>

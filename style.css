@@ -12,3 +12,7 @@ textarea {
 .encrypt-btn-container svg {
     margin-top: -3px;
 }
+
+.btn-copy {
+    width: 85px;
+}

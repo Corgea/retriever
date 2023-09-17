@@ -7,13 +7,15 @@ createApp({
         const encryptedUrl = ref('')
         const newSecret = ref(false)
         const decryptSecret = ref(false)
+        const copyText = ref('Copy')
 
         function copyToClipboard() {
             navigator.clipboard.writeText(url.value)
+            copyText.value = 'Copied!'
         }
 
         function encrypt() {
-            load_key(location.hash.split("#")[1], 'encrypt').then(function (value) {
+            load_key(location.hash.split('#')[1], 'encrypt').then(function (value) {
                 return value
             }).then(function (publicKey) {
                 return encryptString(publicKey, inputData.value).then((value) => value)
@@ -24,7 +26,7 @@ createApp({
         }
 
         function decrypt() {
-            let [pubKeySer, encryptedText] = location.hash.replace('#', '').split(";")
+            let [pubKeySer, encryptedText] = location.hash.replace('#', '').split(';')
             console.log(pubKeySer)
             console.log(encryptedText)
             load_key(window.localStorage.getItem(pubKeySer), 'decrypt').then(function (privKey) {
@@ -36,12 +38,12 @@ createApp({
             })
         }
 
-        if (location.hash === "") {
+        if (location.hash === '') {
             newSecret.value = true
             generateKeyPair().then(function (value) {
                 url.value = location.href + '#' + value
             })
-        } else if (location.hash.includes(";")) {
+        } else if (location.hash.includes(';')) {
             decryptSecret.value = true
             decrypt()
         }
@@ -58,7 +60,8 @@ createApp({
             newSecret,
             decryptSecret,
             url,
-            copyToClipboard
+            copyToClipboard,
+            copyText
         }
     }
 }).mount('#app')
