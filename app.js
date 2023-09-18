@@ -1,18 +1,37 @@
 const {createApp, ref, computed} = Vue
 
+const urlcopy = {
+    props: ['url'],
+    data() {
+        return {
+            copyText: 'Copy'
+        }
+    },
+    methods: {
+        copyToClipboard() {
+            navigator.clipboard.writeText(this.url)
+            this.copyText = 'Copied!'
+        }
+    },
+    template: `
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" v-model="url" disabled>
+            <button class="btn btn-primary btn-copy" type="button" @click.native="copyToClipboard">
+                {{ copyText }}
+            </button>
+        </div>`
+}
+
 createApp({
+    components: {
+        urlcopy
+    },
     setup() {
         const url = ref('')
         const inputData = ref('')
         const encryptedUrl = ref('')
         const newSecret = ref(false)
         const decryptSecret = ref(false)
-        const copyText = ref('Copy')
-
-        function copyToClipboard() {
-            navigator.clipboard.writeText(url.value)
-            copyText.value = 'Copied!'
-        }
 
         function encrypt() {
             load_key(location.hash.split('#')[1], 'encrypt').then(function (value) {
@@ -47,11 +66,6 @@ createApp({
             decryptSecret.value = true
             decrypt()
         }
-        /*
-        else {
-            pub_key_ser = location.hash.split("#")[1]
-        }
-        */
 
         return {
             encrypt,
@@ -59,9 +73,7 @@ createApp({
             inputData,
             newSecret,
             decryptSecret,
-            url,
-            copyToClipboard,
-            copyText
+            url
         }
     }
 }).mount('#app')
