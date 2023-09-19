@@ -16,3 +16,9 @@ textarea {
 .btn-copy {
     width: 85px;
 }
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
