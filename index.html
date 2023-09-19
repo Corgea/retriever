@@ -11,6 +11,7 @@
     <script src="crypto.js"></script>
 </head>
 <body class="container">
+<noscript>This application requires javascript to run.</noscript>
 <div id="app">
     <div class="px-4 pt-5 my-5 text-center">
         <h1 class="display-4 fw-bold text-body-emphasis">Retriever</h1>
@@ -43,12 +44,27 @@
                     </div>
 
                     <div v-show="url">
-                        <p class="">This url contains your encrypted data, send it back to the requestor.</p>
+                        <p class="">This url contains your encrypted data, send it back to the requester.</p>
                         <urlcopy :url="url"/>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div v-show="errorShow">
+        <div class="modal show" tabindex="-1" id="errorModal" style="display: block">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{ errorTitle }}</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{ errorMessage }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop fade show"></div>
     </div>
 </div>
 <script src="app.js"></script>
