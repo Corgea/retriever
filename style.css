@@ -2,6 +2,11 @@ textarea {
   resize: none;
 }
 
+h1 img {
+    height: 60px;
+    margin-top: -10px;
+}
+
 .encrypt-btn-container {
     width: 100%;
     text-align: right;
