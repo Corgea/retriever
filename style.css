@@ -29,3 +29,9 @@ footer {
     padding-left: 20%;
     padding-right: 20%;
 }
+
+.how-it-works {
+    font-size: 18px;
+    text-align: left;
+    line-height: 32px;
+}

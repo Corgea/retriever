@@ -66,7 +66,22 @@
                 </div>
             </div>
         </div>
+
+        <div v-if="newSecret" class="pt-5">
+            <div class="col">
+                <h2>How it works</h2>
+                <div class="d-flex">
+                    <ol class="how-it-works mx-auto justify-content-left">
+                        <li>The above link is sent to somone you want to receive a secret from.</li>
+                        <li>They encrypt a secret and send the new url back.</li>
+                        <li>Open the url with the encrypted secret in this browser.</li>
+                        <li>Click decrypt and voila! &#129668;</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
     </div>
+
     <div v-show="errorShow">
         <div class="modal show" tabindex="-1" id="errorModal" style="display: block">
             <div class="modal-dialog modal-dialog-centered">
