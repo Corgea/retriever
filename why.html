@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Secure secret sharing through the browser using web crypto. No server required." />
+        <title>Retriever</title>
+        <link rel="icon" type="image/png" href="img/favicon.png" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link href="style.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.min.js"></script>
+        <script src="js/crypto.js"></script>
+        <script type="text/javascript">
+            // Your mixpanel script here
+        </script>
+    </head>
+
+    <body class="bg-light d-flex flex-column vh-100">
+        <header class="bg-primary text-white text-center py-4">
+            <img src="img/logo.png" alt="Retriever Logo" class="mb-3" style="height: 80px;">
+            
+            <h1>A new way of Secrets Retrieving</h1><br>
+        </header>
+
+        <main class="container mt-5 my-auto flex-grow-1"> 
+            <section>
+                <h2 style="font-weight: bold;">Why We Built Retriever</h2>
+                <p class="lead" >In today's digital age, the sharing of sensitive information and credentials has become a common practice. Whether it's sharing a password with a colleague or sending a confidential document to a business partner, the need for secure data transfer is critical. Recognizing the gaps in the current systems, the team at Corgea developed Retriever, an open-source project to help users receive secrets and sensitive information. Retriever is a peer-to-peer secrets receiving platform that allows anyone to request secrets without a server needed in the middle. We named it Retriever after the Golden Retriever Dog because of how it collects rather than sends secrets.</p>
+            </section>
+            
+            <br>
+                <h3 style="font-weight: bold;">Deep Dive into Retriever</h3><br>
+
+                <h4>1. A Unique Way to Request Secrets</h4>
+                <p>Interestingly, most existing services don't offer a way to request a secret from someone. This system fills that gap. It allows users to send a link to someone from whom they wish to receive a secret. The recipient can then encrypt the secret and send back a new URL. The requester can then decrypt the secret in their browser, ensuring a seamless and secure exchange.</p>
+
+                <h4>2. Open Source Doesn't Mean Open Hosting</h4>
+                <p>The open-source movement has been a game-changer in the tech industry, promoting transparency, collaboration, and innovation. However, just because a project is open source doesn't mean it's hosted openly. Many platforms that host open-source projects can be vulnerable to attacks or data breaches. This new system ensures that while the codebase is open for everyone to see and contribute to, the hosting remains secure, ensuring the integrity of the shared data. Additionally, retriever.corgea.io is actually hosted Github pages (do a CNAME check to see).</p>
+
+                <h4>3. Eliminating the Middleman</h4>
+                <p>Traditional methods of sharing secrets often involve a third-party server that orchestrates the transfer. While this might seem convenient, it poses a significant risk. Users have to trust that the third party will delete their data after the transfer and that the features they claim to have are genuinely in place. By eliminating the middleman, this new system ensures that data is transferred directly between the sender and receiver, reducing potential points of failure. Retriever has no data store to save or log any of the secrets or the parties sharing data.</p>
+
+                <h4>4. Addressing the Vulnerability of URLs</h4>
+                <p>One of the most significant challenges with current systems is the vulnerability of URLs. If someone gets hold of a secret URL, they essentially have access to the secret it contains. This new system acknowledges this flaw and encrypts the secret within the URL. Only the intended recipient, with the decryption key, can access the secret, ensuring an added layer of security.</p>
+
+                <h4>5. Harnessing the Power of Web Crypto APIs</h4>
+                <p>The system's backbone lies in its use of standard web crypto APIs. These APIs are widely recognized for their robustness and security features. By leveraging these APIs, the system ensures that the encryption and decryption processes are not only secure but also fast and efficient.</p>
+            </br>
+
+            <section>
+                <h3>In Conclusion</h3>
+                <p>As the digital landscape continues to evolve, the need for secure data transfer systems becomes even more critical. This new open-source project is a testament to the power of innovation and the importance of security in today's interconnected world. By addressing the shortcomings of existing systems and introducing unique features, it sets a new standard for secure credential sharing. Whether you're a developer, a business professional, or just someone looking for a secure way to share secrets, this system offers a solution that's both efficient and trustworthy.</p>
+
+                <p style="font-weight: bold;">A big thank you to Adam Bronte for authoring Retriever and Tamara for putting the finishing touches on usability and design.</p>
+            </section>
+        </main>
+
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
+        
+            <div class="col-md-4 d-flex align-items-center">
+                <img src="img/logo.png" height="40">&nbsp;
+                <span class="mb-3 mb-md-0 text-body-secondary">Part of the <a href="https://www.corgea.com" class="link-dark">Corgea</a> pack.</span>
+            </div>
+            <div class="text-left" style="padding:10px;">
+                <a href="index.html" class="btn btn-outline-primary" style="border-color: #FFA500; color: #FFA500;">Get Started</a>
+            </div>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3"><a class="text-body-secondary" href="https://github.com/Corgea/retriever">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                </a>
+                </li>
+            </ul>
+        </footer>
+
+    </body>
+
+
+</html>

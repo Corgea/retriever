@@ -1,3 +1,8 @@
+body {
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
 textarea {
   resize: none;
 }
@@ -23,7 +28,9 @@ h1 img {
 }
 
 footer {
-    position: absolute;
+    background-color: #fff;
+    margin-top: auto;
+    position: relative;
     bottom: 0;
     width: 100%;
     padding-left: 20%;

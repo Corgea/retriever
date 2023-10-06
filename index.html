@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
@@ -21,65 +22,98 @@
         mixpanel.init('9f122514d00adff8f7d054318fb8bb45', { track_pageview: true, persistence: 'localStorage' });
     }
     </script>
+
 </head>
+
 <body class="d-flex flex-column h-100">
 <noscript>This application requires javascript to run.</noscript>
 <main class="flex-shrink-0">
-
-<div id="app" class="container">
+  
+<div id="app" class="container" data-aos="fade-up">
     <div class="px-4 pt-5 my-5 text-center">
-        <h1 class="display-4 fw-bold text-body-emphasis">
-            <img src="img/logo.png">
-            Retriever</h1>
+        <h1 style="font-weight: bold; font-size: 34px; margin-bottom: 20px; color: #333;">
+            <a href="/"><img src="img/logo.png" alt="Retriever Logo" style="height: 80px; margin-right: 15px;"></a>
+        </h1>
+        <h1 >Retriever</h1>
+
+        <p class="lead mb-4" style="font-size: 18px; color: #555;">Securely request secrets browser-to-broswer</p>
+
         <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">Securely request secrets over the internet.</p>
 
-            <div v-if="newSecret">
-                <p class="lead mb-4">Share the below url with the person you are requesting a secret from.</p>
-                <urlcopy :url="url"/>
-            </div>
-            <div v-else-if="decryptSecret">
-                <p class="lead mb-4">Below is the decrypted secret shared with you.</p>
-                <textarea class="form-control" id="dataForDecryption" rows="5"
-                          v-model="inputData" disabled v-model="inputData"></textarea>
-            </div>
-            <div v-else>
-                <p class="lead mb-4">Somebody is requesting a secret! Enter the value you wish to share below and hit
-                    encrypt.</p>
-                <div class="mb-3">
-                    <textarea class="form-control" id="dataForEncryption" rows="5"
-                              placeholder="Text to encrypt..." v-model="inputData"></textarea>
-
-                    <div class="encrypt-btn-container">
-                        <button type="submit" class="btn btn-primary" @click="encrypt">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
-                                <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
-                            </svg>
-                            Encrypt
-                        </button>
-                    </div>
-
-                    <div v-show="url">
-                        <p class="">This url contains your encrypted data, send it back to the requester.</p>
-                        <urlcopy :url="url"/>
+        <div class="card p-3">
+           
+    
+    
+                <div v-if="newSecret">
+                    <p class="lead mb-4" style="font-size: 16px; color: #777;">Share the below URL with the person you are requesting a secret from.</p>
+                    <urlcopy :url="url"/>
+                    
+                </div>
+                <div v-else-if="decryptSecret">
+                    <p class="lead mb-4" style="font-size: 16px; color: #777;">Below is the decrypted secret shared with you.</p>
+                    <textarea class="form-control" id="dataForDecryption" rows="5"
+                              v-model="inputData" disabled style="border-radius: 5px;"></textarea>
+                </div>
+                <div v-else>
+                    <p class="lead mb-4">Somebody is requesting a secret</br>
+                        Fill in what you want to share and click encrypt.</br> 
+                        <small> None one except for the requester will see this information encrypt.</small>
+                    
+                    </p>
+                    <div class="mb-3">
+                        <textarea class="form-control" id="dataForEncryption" rows="5"
+                                  placeholder="Text to encrypt..." v-model="inputData"></textarea>
+    
+                                  <div class="encrypt-btn-container" style="margin-top: 20px;">
+                                    <button type="submit" class="btn btn-primary" @click="encrypt" style="background-color: #FFA500; border: none; border-radius: 5px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16" style="margin-right: 8px;">
+                                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                                        </svg>
+                                        Encrypt
+                                    </button>
+                                </div>
+    
+                                <div v-show="url" style="margin-top: 20px;">
+                                    <p style="font-size: 16px; color: #777;">This URL contains your encrypted data, send it back to the requester.</p>
+                                    <urlcopy :url="url"/>
+                                </div>
                     </div>
                 </div>
             </div>
+
+
+
+
+
         </div>
 
-        <div v-if="newSecret" class="pt-5">
-            <div class="col">
-                <h2>How it works</h2>
-                <div class="d-flex">
-                    <ol class="how-it-works mx-auto justify-content-left">
-                        <li>The above link is sent to somone you want to receive a secret from.</li>
-                        <li>They encrypt a secret and send the new url back.</li>
-                        <li>Open the url with the encrypted secret in this browser.</li>
-                        <li>Click decrypt and voila! &#129668;</li>
+
+        <div v-if="newSecret" class="pt-5" style="background-color: #f9f9f9; padding: 40px 0;">
+            <div class="col text-center">
+                <h2 style="font-weight: bold; font-size: 24px; margin-bottom: 30px; color: #333;">How it works</h2>
+                <div class="d-flex flex-column align-items-center">
+                    <ol class="how-it-works" style="list-style-type: none; padding: 0; font-size: 16px; color: #555;">
+                        <li style="display: flex; align-items: start; margin-bottom: 20px;">
+                            <span style="display: inline-block; width: 30px; height: 30px; background-color: #FFA500; color: white; border-radius: 50%; text-align: center; line-height: 30px; margin-right: 10px;">1</span>
+                            The above link is sent to someone you want to receive a secret from.
+                        </li>
+                        <li style="display: flex; align-items: start; margin-bottom: 20px;">
+                            <span style="display: inline-block; width: 30px; height: 30px; background-color: #FFA500; color: white; border-radius: 50%; text-align: center; line-height: 30px; margin-right: 10px;">2</span>
+                            They encrypt a secret and send the new URL back.
+                        </li>
+                        <li style="display: flex; align-items: start; margin-bottom: 20px;">
+                            <span style="display: inline-block; width: 30px; height: 30px; background-color: #FFA500; color: white; border-radius: 50%; text-align: center; line-height: 30px; margin-right: 10px;">3</span>
+                            Open the URL with the encrypted secret in this browser.
+                        </li>
+                        <li style="display: flex; align-items: start; margin-bottom: 20px;">
+                            <span style="display: inline-block; width: 30px; height: 30px; background-color: #FFA500; color: white; border-radius: 50%; text-align: center; line-height: 30px; margin-right: 10px;">4</span>
+                            Click decrypt and voila! &#129668;
+                        </li>
                     </ol>
                 </div>
             </div>
         </div>
+        
     </div>
 
     <div v-show="errorShow">
@@ -99,12 +133,16 @@
     </div>
 </div>
 </main>
+
+
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
     <div class="col-md-4 d-flex align-items-center">
         <img src="img/logo.png" height="40">&nbsp;
         <span class="mb-3 mb-md-0 text-body-secondary">Part of the <a href="https://www.corgea.com" class="link-dark">Corgea</a> pack.</span>
     </div>
-
+    <div class="text-left" style="padding:10px;">
+        <a href="why.html" class="btn btn-outline-primary" style="border-color: #FFA500; color: #FFA500;">Why We Built This</a>
+    </div>
     <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
         <li class="ms-3"><a class="text-body-secondary" href="https://github.com/Corgea/retriever">
             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
@@ -117,3 +155,4 @@
 <script src="js/app.js"></script>
 </body>
 </html>
+
