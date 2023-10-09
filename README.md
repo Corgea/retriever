@@ -15,3 +15,8 @@ Secure secret sharing through the browser using web crypto. No server required!
 
 ## How it works
 ![How retriever works](https://github.com/Corgea/retriever/blob/main/img/encryption_flow.png?raw=true)
+
+## Roadmap
+* Support for larger secrets
+* File sharing
+* Bi-directional sharing
