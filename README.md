@@ -5,6 +5,8 @@
 # Retreiver
 Secure secret sharing through the browser using web crypto. No server required!
 
+[Why did we built this?](https://retriever.corgea.io/)
+
 ## Features
 * 100% client-side
 * Uses standard browser web crypto APIs
