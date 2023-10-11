@@ -5,7 +5,7 @@
 # Retreiver
 Secure secret sharing through the browser using web crypto. No server required!
 
-[Try it here](https://retriever.corgea.io/why.html)
+[Try it here](https://retriever.corgea.io)
 
 
 [Why did we built this?](https://retriever.corgea.io/why.html)
