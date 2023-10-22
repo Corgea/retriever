@@ -60,6 +60,10 @@
                     <p class="lead mb-4" style="font-size: 16px; color: #777;">Below is the decrypted secret shared with you.</p>
                     <textarea class="form-control" id="dataForDecryption" rows="5"
                               v-model="inputData" disabled style="border-radius: 5px;"></textarea>
+                    <p id="deleteKeyLabel" class="mt-3">Done with this secret?</p>
+                    <button id="requestDeleteBtn" class="btn btn-danger" @click="promptConfirmDeleteKey">Delete the private key</button>
+                    <button id="cancelDeleteBtn" class="btn btn-warning d-none mx-1" @click="cancelDeleteKey">Nevermind, keep it</button>
+                    <button id="confirmDeleteBtn" class="btn btn-danger d-none mx-1" @click="deleteKey">I am sure, delete it</button>
                 </div>
                 <div v-else>
                     <p class="lead mb-4">Somebody is requesting a secret</br>
