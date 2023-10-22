@@ -59,6 +59,27 @@ createApp({
             })
         }
 
+        function promptConfirmDeleteKey() {
+            $("#deleteKeyLabel").text("Deletion is permanent. You will no longer be able to decrypt or see the secret. Are you sure?")
+            $("#confirmDeleteBtn").removeClass("d-none");
+            $("#cancelDeleteBtn").removeClass("d-none");
+            $("#requestDeleteBtn").addClass("d-none");
+        }
+
+        function cancelDeleteKey() {
+            $("#deleteKeyLabel").text("Done with this secret?")
+            $("#confirmDeleteBtn").addClass("d-none");
+            $("#cancelDeleteBtn").addClass("d-none");
+            $("#requestDeleteBtn").removeClass("d-none");
+        }
+
+        function deleteKey() {
+            let publicKey = localStorage.getItem("publicKey")
+            localStorage.removeItem(publicKey)
+            localStorage.removeItem("publicKey")
+            window.location = window.location.origin + window.location.pathname
+        }
+
         function decrypt() {
             let [pubKeySer, encryptedText] = location.hash.replace('#', '').split(';')
             load_key(window.localStorage.getItem(pubKeySer), 'decrypt').then(function (privKey) {
@@ -106,6 +127,9 @@ createApp({
 
         return {
             encrypt,
+            promptConfirmDeleteKey,
+            cancelDeleteKey,
+            deleteKey,
             encryptedUrl,
             inputData,
             newSecret,
