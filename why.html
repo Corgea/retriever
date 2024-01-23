@@ -30,43 +30,46 @@
         <main class="container mt-5 my-auto flex-grow-1"> 
             <div class="card p-4">
 
-                <section>
-                    <h2>Why did we build Retriever?</h2>
-                    <p>
-                        Adam from our team realized that there was no way to request secrets from someone. Most people share passwords, but what if you could ask for a secret? What if it could also be done without a server in the middle. Shouldn’t secret sharing really be secret? I think we all saw the news on LastPass. 
-                        </p>
-                        <p>This is why we developed Retriever, an open-source project to help users receive secrets and sensitive information. Retriever is a peer-to-peer secrets receiving platform that allows anyone to request secrets without a server needed in the middle. 
-                                            </p>
-                </section>
+                <h3>The story</h3>
+                <p>A few months ago my team and I were on a customer call, and we needed to get some secrets from them. We went through the typical process where they shared their secret through their password manager. The process took 15 minutes, and it felt heavy. Adam from our team realized that he hadn’t seen a way to request secrets from someone. Most people send passwords, but what if you could ask for one? What if it could also be done without a server in the middle? Shouldn’t secret sharing really be secret? Also, what if it was a light and easy experience?</p>
                 
-                <br>
-                    <h3>Here’s what makes Retriever unique. </h3><br>
-    
-                    <h5>1. A Unique Way to Request Secrets</h5>
-                    <p>Interestingly, most services don't offer a way to request a secret from someone. Most secrets sharing happens with the person initiating the share has to have a password manager to do so. This system fills that gap. It allows users to send a link to someone from whom they wish to receive a secret. The recipient can then encrypt the secret and send back a new URL. The requester can then decrypt the secret in their browser, ensuring a seamless and secure exchange.</p>
-    
-                    <h5>2. Open Source Doesn't Mean Open Hosting</h5>
-                    <p>Just because a project is open source doesn't mean it's hosted openly. This new system ensures that while the codebase is open for everyone to see and contribute to, the hosting remains secure, ensuring the integrity of the shared data. Additionally, retriever.corgea.io is actually hosted Github pages (do a CNAME check to see).                     </p>
-    
-                    <h5>3. Eliminating the Middleman</h5>
-                    <p>Traditional methods of sharing secrets often involve a third-party server that orchestrates the transfer. While this might seem convenient, it poses a significant risk. Users have to trust that the third party will delete their data after the transfer. This new system ensures that data is transferred directly between the sender and receiver, reducing potential points of failure. Retriever has no data store to save or log any of the secrets or the parties sharing data. 
-                    </p>
-    
-                    <h5>4.  Making URLs a secure way to share</h5>
-                    <p>One of the most significant challenges with current systems is the exposure of URLs. If someone gets hold of a secret URL, they essentially have access to the secret it contains. This new system acknowledges this flaw and encrypts the secret within the URL. Only the intended recipient, with the decryption key, can access the secret, ensuring an added layer of security.
-                    </p>
-    
-                    <h5>5. No addons, plugins, or apps.</h5>
-                    <p>The system's backbone lies in its use of standard web cryptography. These are widely recognized for their robustness and security features. By leveraging these standards, the system ensures that the encryption and decryption processes are not only secure but also fast and efficient.
-                    </p>
-                </br>
+                <h3>The experiment</h3>
+                <p>This is why we developed <a href="https://retriever.corgea.io/" target="_blank">Retriever</a>, an open-source research project to help users receive secrets and sensitive information without needing a server in the middle. It works by using Public-key cryptography to coordinate the message sharing between the two devices. The requesting user visits <a href="https://retriever.corgea.io/">https://retriever.corgea.io/</a>, which generates a URL with the public key, and a private key is then stored in the browser. The URL can be shared with anyone so that they can enter their secret. When a secret is filled in, it’s encrypted with the public key, and the user can send the final link back to the requester. Using the private key, the requester can see the secret on their machine.</p>
+                
+                <p>Here’s a diagram that shows the flow:<br> <a href="https://raw.githubusercontent.com/Corgea/retriever/main/img/encryption_flow.png" target="_blank"><img src="https://raw.githubusercontent.com/Corgea/retriever/main/img/encryption_flow.png" height="200px"></a></p>
+                
+                <h3>What makes this better and unique?</h3>
+                <p>Interestingly, most services like LastPass, 1Password, and others don't offer a way to request a secret from someone. In most cases, sharing secrets requires the initiator to have a password manager. Retriever addresses the scenario where a user wants to share confidential information but lacks a secure method, or when the parties use different secret management systems.</p>
+                
+                <p>One of the most significant challenges with many solutions is the exposure of URLs. If someone gets hold of a secret URL, they could essentially have access to the secret it contains. This new system acknowledges this flaw and encrypts the secret within the URL. Only the intended recipient, with the decryption key, can access the secret, ensuring an added layer of security. Anyone who wants to get access to the secret in the second link needs to get the private key from the browser and the link itself.</p>
+                
+                <p>Traditional methods of sharing secrets often involve a third-party server that orchestrates the transfer. While this might seem convenient, it poses a significant risk. Users have to trust that the third party will delete their data after the transfer. This new system ensures that data is transferred directly between the sender and receiver, reducing potential points of failure. Retriever does not store or log any secrets or data about the parties involved in the sharing process. See the open source project for more details: <a href="https://github.com/Corgea/retriever">https://github.com/Corgea/retriever</a>. We’ve also gotten asked, why not use WebRTC? Yes, this can be achieved with WebRTC, but you still need a signaling server to make this work.</p>
+                
+                <p>Another big issue with most open-source projects is just because a project is open source doesn't mean it's hosted openly. This new system ensures that while the codebase is open for everyone to see and contribute to, the hosting remains open. Retriever.corgea.io is actually hosted on Github pages (do a CNAME check to see).</p>
+                
+                <p>Finally, the system's backbone lies in its use of standard web cryptography. By leveraging these standards, the system ensures that the encryption and decryption processes are not only secure but also fast and efficient.</p>
+                
     
                 <section>
                     <h3>Who are we? <img src="img/corgi_running.gif"></h3>
-                    <p>We are a passionate bunch of engineers, designers, and product builders that like to tackle the most urgent and stimulating problems in security. In our prior roles, we designed, secured and built software products for the likes of Coupa, Autodesk, and PlanGrid.
-                    </p>
+
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <img src="img/team.jpg" width="300">
+                        </div>
+                        <div class="col-lg-9">
+                            <p>We are the team behind <a href="https://corgea.com/">Corgea</a>. A passionate bunch of engineers, designers, and product builders that like to tackle the most urgent and stimulating problems in security. In our prior roles, we designed, secured and built software products for the likes of Coupa, Autodesk, and PlanGrid.
+                            </p>                   
+                            <p><em>A big thank you to Adam Bronte for authoring Retriever and Tamara for putting the finishing touches on usability and design.</em></p>
+
+                            
+                        </div>
+
+                    </div>
+
+                    
+
     
-                    <p style="font-weight: bold;">A big thank you to Adam Bronte for authoring Retriever and Tamara for putting the finishing touches on usability and design.</p>
                 </section>
     
             </div>
