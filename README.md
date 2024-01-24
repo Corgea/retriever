@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/Corgea/retriever/main/img/logo.png">
 </p>
 
-# Retreiver
+# Retriever
 Secure secret sharing through the browser using web crypto. No server required!
 
 [Try it here](https://retriever.corgea.io)
