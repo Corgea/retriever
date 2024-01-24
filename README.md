@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/Corgea/retriever/main/img/logo.png">
 </p>
 
-# Retreiver
+# Retriever
 Secure secret sharing through the browser using web crypto. No server required!
 
 [Try it here](https://retriever.corgea.io)
@@ -25,5 +25,5 @@ Secure secret sharing through the browser using web crypto. No server required!
 * Bi-directional sharing
 
 ## Analytics disclosure
-Retreiver does use Mixpanel to help the Corgea team know if it's getting traffic. We do not transmit any of your secrets and private keys to Mixpanel. 
+Retriever does use Mixpanel to help the Corgea team know if it's getting traffic. We do not transmit any of your secrets and private keys to Mixpanel. 
 It is only used if you use https://retriever.corgea.io/. If you run this locally it will not send any analytics to Mixpanel and you can choose to remove it. 
