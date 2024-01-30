@@ -67,8 +67,12 @@
                     
                     </p>
                     <div class="mb-3">
-                        <textarea class="form-control" id="dataForEncryption" rows="5"
-                                  placeholder="Fill in what you want to share and click encrypt..." v-model="inputData"></textarea>
+                        <textarea class="form-control" :class="{'is-invalid':inputData.length>=190}" id="dataForEncryption" rows="5"
+                                  placeholder="Fill in what you want to share and click encrypt..." v-model="inputData"
+                                  ></textarea>
+                                  <small>{{inputData.length}} / 190</small>
+                                  <small v-if="inputData.length>=190"> Input too long.</small>
+                                  
     
                                   <div class="encrypt-btn-container" style="margin-top: 20px;">
                                     <button type="submit" class="btn btn-warning" @click="encrypt" >
